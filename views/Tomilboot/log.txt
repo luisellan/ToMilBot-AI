@@ -1,0 +1,12 @@
+Inicio del script
+Archivo ZIP cargado correctamente: Pruba Tecnica.zip
+Archivo ZIP extraído correctamente.
+Procesando archivo: Pruba Tecnica
+Error al leer el archivo: Pruba Tecnica
+Archivos procesados correctamente.
+Inicio del script
+Archivo ZIP cargado correctamente: Pruba Tecnica.zip
+Archivo ZIP extraído correctamente.
+Procesando archivo: Pruba Tecnica
+Error al leer el archivo: Pruba Tecnica
+Archivos procesados correctamente.
