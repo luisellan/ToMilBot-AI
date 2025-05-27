@@ -124,28 +124,37 @@ class Usuario extends Conectar
     }
 
 
-    public function modificar($usu_id, $usu_nom, $usu_ape, $usu_correo, $usu_pass, $rol_id)
+    public function modificar($usu_id, $usu_nom, $usu_ape, $usu_correo, $usu_img)
     {
         $conectar = parent::Conexion();
         parent::set_names();
 
+        require_once("Usuario.php");
+        $usu = new Usuario();
+
+        if ($_FILES["usu_img"]["name"] != '') {
+            $usu_img = $usu->upload_image();
+        } else {
+            $usu_img = $_POST["hidden_usuario_imagen"];
+        }
+
         $sql = "UPDATE TM_USUARIO SET 
-            USU_NOM = ?, 
-            USU_APE = ?, 
-            USU_CORREO = ?, 
-            USU_PASS = ?, 
-            ROL_ID = ?
+                USU_NOM = ?, 
+                USU_APE = ?, 
+                USU_CORREO = ?, 
+                USU_IMG = ?
             WHERE USU_ID = ?";
 
         $stmt = $conectar->prepare($sql);
         $stmt->bindValue(1, $usu_nom);
         $stmt->bindValue(2, $usu_ape);
         $stmt->bindValue(3, $usu_correo);
-        $stmt->bindValue(4, $usu_pass);
-        $stmt->bindValue(5, $rol_id);
-        $stmt->bindValue(6, $usu_id); // ID al final para el WHERE
+        $stmt->bindValue(4, $usu_img);
+        $stmt->bindValue(5, $usu_id); // el ID es el último en el WHERE
+
         $stmt->execute();
     }
+
 
 
     public function restaurar_password($usu_id, $usu_pass)
@@ -231,6 +240,17 @@ class Usuario extends Conectar
                 header("Location: " . conectar::ruta() . "views/home"); // Redirige al home
                 exit();
             }
+        }
+    }
+
+    public function upload_image()
+    {
+        if (isset($_FILES["usu_img"])) {
+            $extension = explode('.', $_FILES['usu_img']['name']);
+            $new_name = rand() . '.' . $extension[1];
+            $destination = '../assets/images/users/' . $new_name;
+            move_uploaded_file($_FILES['usu_img']['tmp_name'], $destination);
+            return $new_name;
         }
     }
 }

@@ -26,9 +26,8 @@ switch ($_GET["op"]) {
                 $_POST["usu_correo"],
                 $_POST["usu_nom"],
                 $_POST["usu_ape"],
-
-                $_POST["usu_pass"],
-                $_POST["rol_id"],
+                $_POST["usu_img"]
+                
 
             );
         }

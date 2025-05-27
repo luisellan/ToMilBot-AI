@@ -12,32 +12,33 @@ $historial = new Historial();
 switch ($_GET["op"]) {
 
     case "listar":
-        $datos = $historial->listar($_POST["user_idx"]);
-        $data = array();
-        foreach ($datos as $row) {
-            $sub_array = array();
-            $sub_array[] = $row["zip_id"];
-            $sub_array[] = $row["zip_name"];
-            $sub_array[] = '<a href="../Tomilboot/uploads/' . $row["zip_name"] . '" class="btn btn-success" download>Descargar ZIP</a>';
-            $sub_array[] = '<a href="../Tomilboot/uploads/corregido_' . $row["zip_name"] . '" class="btn btn-warning" download>Descargar Corregido</a>';
+    $datos = $historial->listar($_POST["user_idx"]);
+    $data = array();
 
-            $sub_array[] = $row["upload_date"];
+    foreach ($datos as $row) {
+        $sub_array = array();
+        $sub_array[] = $row["zip_id"];
+        $sub_array[] = $row["zip_name"];
+        $sub_array[] = '<a href="../Tomilboot/uploads/' . $row["zip_name"] . '" class="btn btn-success" download>Descargar ZIP</a>';
+        $sub_array[] = '<a href="../Tomilboot/uploads/corregido_' . $row["zip_name"] . '" class="btn btn-warning" download>Descargar Corregido</a>';
+        $sub_array[] = $row["upload_date"];
+        $sub_array[] = '<a href="vulnerabilidad.php?id_zip=' . $row["zip_id"] . '" class="btn btn-primary btn-icon waves-effect waves-light">
+                <i class="ri-settings-2-line"></i>
+            </a>';
+        $data[] = $sub_array;
+    }
 
-            $sub_array[] = '<a href="vulnerabilidad.php?id_zip=' . $row["zip_id"] . '" class="btn btn-primary btn-icon waves-effect waves-light">
-                    <i class="ri-settings-2-line"></i>
-                </a>';
-            $data[] = $sub_array;
-        }
-        // necesitamos este codigo paracontar cuantos informacion hay
+    // Devuelve el formato esperado por DataTables (nuevo formato moderno)
+    $results = array(
+        "draw" => intval($_POST["draw"]), // ← importante
+        "recordsTotal" => count($data),
+        "recordsFiltered" => count($data),
+        "data" => $data // ← no "aaData"
+    );
 
-        $results = array(
-            "sEcho" => 1,
-            "iTotalRecords" => count($data),
-            "iTotalDisplayRecorsd" => count($data),
-            "aaData" => $data
-        );
-        echo json_encode($results);
-        break;
+    echo json_encode($results);
+    break;
+
     /*    TODO: MOSTRAR INFORMACION DE REGISTROS SEGUN SU ID */
     case "mostrar":
         // Llamas a la función obtener() pasándole el id_zip

@@ -15,7 +15,7 @@
     g = "en",
     b = localStorage.getItem("language");
   function y(e) {
-    console.log("Cambiando idioma a:", e);
+    
 
     const imgEl = document.getElementById("header-lang-img");
     if (imgEl) {
@@ -27,7 +27,7 @@
           imgEl.src = "../../assets/images/flags/spain.svg";
           break;
         default:
-          console.warn("Idioma no soportado:", e);
+          
       }
     }
 

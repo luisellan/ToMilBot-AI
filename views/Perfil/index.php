@@ -43,7 +43,7 @@ if (isset($_SESSION["usu_id"])) {
                                         <div class="card-body p-4">
                                             <div class="d-flex align-items-center mb-4">
                                                 <div class="flex-shrink-0">
-                                                    <img src="../../assets/images/users/user-dummy-img.jpg" alt="Usuario" class="rounded-circle avatar-lg">
+                                                    <img src="../../assets/images/users/<?php echo $_SESSION['usu_img']; ?>" alt="Usuario" class="rounded-circle avatar-lg">
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
                                                     <h5 class="card-title mb-1" id="usuario_nombre" data-key="t-usuario-nombre">Nombre del Usuario</h5>
@@ -58,60 +58,52 @@ if (isset($_SESSION["usu_id"])) {
 
                                             <hr>
 
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label" data-key="t-nombre">Nombre completo</label>
-                                                    <input type="text" class="form-control" id="input_nombre" name="usu_nom" value="<?php echo $_SESSION['usu_nom']; ?>" disabled>
-                                                </div>
+                                            <form id="formPerfil" enctype="multipart/form-data">
+                                                <div class="row g-3">
+                                                    <!-- Campo oculto para ID de usuario -->
+                                                    <input type="hidden" id="usu_id" name="usu_id" value="<?php echo $_SESSION['usu_id']; ?>">
 
-                                                <div class="col-md-6">
-                                                    <label class="form-label" data-key="t-apellido">Apellido</label>
-                                                    <input type="text" class="form-control" id="input_apellido" name="usu_ape" value="<?php echo $_SESSION['usu_ape']; ?>" disabled>
-                                                </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" data-key="t-nombre">Nombre completo</label>
+                                                        <input type="text" class="form-control" id="input_nombre" name="usu_nom" value="<?php echo $_SESSION['usu_nom']; ?>" disabled>
+                                                    </div>
 
-                                                <div class="col-md-6">
-                                                    <label class="form-label" data-key="t-correo">Correo electrónico</label>
-                                                    <input type="email" class="form-control" id="input_correo" name="usu_correo" value="<?php echo $_SESSION['usu_correo']; ?>" disabled>
-                                                </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" data-key="t-apellido">Apellido</label>
+                                                        <input type="text" class="form-control" id="input_apellido" name="usu_ape" value="<?php echo $_SESSION['usu_ape']; ?>" disabled>
+                                                    </div>
 
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" data-key="t-correo">Correo electrónico</label>
+                                                        <input type="email" class="form-control" id="input_correo" name="usu_correo" value="<?php echo $_SESSION['usu_correo']; ?>" disabled>
+                                                    </div>
 
-
-                                                <div class="col-md-6">
-                                                    <label class="form-label" data-key="t-contrasena">Contraseña</label>
-                                                    <input type="text" class="form-control" id="input_password" name="usu_pass" value="<?php echo $_SESSION['usu_pass']; ?>" disabled>
-                                                </div>
-
-
-                                                <div class="col-md-12">
-                                                    <div>
-                                                        <label for="valueInput" class="form-label">Imagen</label>
+                                                    <div class="col-md-12 d-none" id="contenedorImagen">
+                                                        <label for="usu_img" class="form-label">Imagen</label>
                                                         <input type="file" class="form-control" id="usu_img" name="usu_img" />
                                                     </div>
-                                                </div>
 
-
-                                                <br>
-
-
-                                                <div class="col-md-12">
-                                                    <div class="text-center">
-                                                        <a id="btnremovephoto" class="btn btn-danger btn-icon waves-effect waves-light btn-sm"><i class="ri-delete-bin-5-line"></i></a>
-                                                        <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                                            <span id="pre_imagen"></span>
+                                                    <div class="col-md-12">
+                                                        <div class="text-center">
+                                                            <a id="btnremovephoto" class="btn btn-danger btn-icon waves-effect waves-light btn-sm">
+                                                                <i class="ri-delete-bin-5-line"></i>
+                                                            </a>
+                                                            <div class="profile-user position-relative d-inline-block mx-auto mb-4">
+                                                                <span id="pre_imagen"></span>
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
-                                            </div>
 
-                                            <div class="mt-4 d-none" id="guardarPerfil">
-                                                <button type="button" class="btn btn-success" id="btnGuardarCambios">
-                                                    <i class="ri-save-3-line"></i> Guardar Cambios
-                                                </button>
-                                                <button type="button" class="btn btn-secondary" id="btnCancelar">
-                                                    Cancelar
-                                                </button>
-                                            </div>
+                                                <div class="mt-4 d-none" id="guardarPerfil">
+                                                    <button type="button" class="btn btn-success" id="btnGuardarCambios">
+                                                        <i class="ri-save-3-line"></i> Guardar Cambios
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary" id="btnCancelar">
+                                                        Cancelar
+                                                    </button>
+                                                </div>
+                                            </form>
 
                                         </div>
                                     </div>
@@ -131,37 +123,88 @@ if (isset($_SESSION["usu_id"])) {
                         const btnCancelar = document.getElementById('btnCancelar');
                         const inputs = document.querySelectorAll('input.form-control');
                         const guardarPerfil = document.getElementById('guardarPerfil');
-                        const contenedorImagen = document.getElementById('contenedorImagen'); // <-- referencia al contenedor de imagen
+                        const contenedorImagen = document.getElementById('contenedorImagen');
 
-                        // Función para habilitar los campos
                         btnEditarPerfil.addEventListener('click', function() {
                             inputs.forEach(input => input.disabled = false);
                             guardarPerfil.classList.remove('d-none');
-                            contenedorImagen.classList.remove('d-none'); // <-- Mostrar el input de imagen
+                            contenedorImagen.classList.remove('d-none');
                         });
 
-                        // Función para cancelar edición
                         btnCancelar.addEventListener('click', function() {
                             inputs.forEach(input => input.disabled = true);
                             guardarPerfil.classList.add('d-none');
-                            contenedorImagen.classList.add('d-none'); // <-- Ocultar nuevamente
+                            contenedorImagen.classList.add('d-none');
                         });
 
-                        // Función para guardar cambios
                         btnGuardarCambios.addEventListener('click', function() {
-                            inputs.forEach(input => input.disabled = true);
-                            guardarPerfil.classList.add('d-none');
-                            contenedorImagen.classList.add('d-none'); // <-- Ocultar luego de guardar
+                            const formData = new FormData();
+                            formData.append('usu_id', document.getElementById('usu_id').value);
+                            formData.append('usu_nom', document.getElementById('input_nombre').value);
+                            formData.append('usu_ape', document.getElementById('input_apellido').value);
+                            formData.append('usu_correo', document.getElementById('input_correo').value);
 
-                            Swal.fire({
-                                icon: 'success',
-                                title: '¡Datos actualizados!',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
+
+                            const fileInput = document.getElementById('usu_img');
+                            if (fileInput.files.length > 0) {
+                                formData.append('usu_img', fileInput.files[0]);
+                            }
+
+                            fetch('../../controller/usuario.php?op=guardaryeditar', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                .then(response => response.text())
+                                .then(data => {
+                                    inputs.forEach(input => input.disabled = true);
+                                    guardarPerfil.classList.add('d-none');
+                                    contenedorImagen.classList.add('d-none');
+
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: '¡Datos actualizados!',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error al guardar cambios',
+                                        text: 'Intente nuevamente',
+                                    });
+                                });
+                        });
+
+
+                        function filePreview(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    $("#pre_imagen").html(
+                                        "<img src=" +
+                                        e.target.result +
+                                        ' class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image"></img>'
+                                    );
+                                };
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+
+                        $(document).on("change", "#usu_img", function() {
+                            filePreview(this);
+                        });
+
+                        $(document).on("click", "#btnremovephoto", function() {
+                            $("#usu_img").val("");
+                            $("#pre_imagen").html(
+                                '<img src="../../assets/images/users/user-dummy-img.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image"></img><input type="hidden" name="hidden_usuario_imagen" value="" />'
+                            );
                         });
                     });
                 </script>
+
             </div>
 
         </div>

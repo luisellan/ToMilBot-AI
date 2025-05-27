@@ -65,7 +65,7 @@ if (isset($_SESSION["usu_id"])) {
                 </div>
 
                 <?php require_once("../html/footer.php"); ?>
-                <script type="text/javascript" src="mntusuario.js"></script>
+                <script type="text/javascript" src="mnthistorial.js"></script>
             </div>
 
         </div>

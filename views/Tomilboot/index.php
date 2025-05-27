@@ -38,6 +38,7 @@ if (isset($_SESSION["usu_id"])) {
                                         <h5 class="fs-12 text-uppercase text-success" data-key="t-cargarzip">Cargar ZIP</h5>
                                         <form id="uploadForm" method="POST" enctype="multipart/form-data">
                                             <input type="hidden" id="user_idx" name="user_idx" value="<?php echo $_SESSION["usu_id"]; ?>">
+                                             <input type="hidden" id="correo_usuario" name="correo_usuario" value="<?php echo $_SESSION["usu_correo"]; ?>">
                                             <div class="mb-3">
                                                 <label for="file" class="form-label" data-key="t-label-zip">Seleccionar archivo ZIP</label>
                                                 <input type="file" class="form-control" id="file" name="file" accept=".zip" required>

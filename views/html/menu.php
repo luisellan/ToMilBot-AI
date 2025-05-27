@@ -1,5 +1,4 @@
 <?php
-session_start();
 $role = $_SESSION['rol_id'] ?? 1; // 2 por defecto si no está seteado
 ?>
 <!-- ========== App Menu ========== -->
