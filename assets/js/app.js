@@ -33,19 +33,19 @@
 
     localStorage.setItem("language", e);
     const b = localStorage.getItem("language") || e;
-    console.log("Idioma guardado en localStorage:", b);
+    
 
     (function loadTranslations() {
       const xhr = new XMLHttpRequest();
       const url = `../../assets/lang/${b}.json`;
-      console.log("Cargando archivo de traducción:", url);
+      
 
       xhr.open("GET", url);
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             const a = JSON.parse(xhr.responseText);
-            console.log("Traducciones recibidas:", a);
+            
             Object.keys(a).forEach(function (t) {
               const els = document.querySelectorAll(`[data-key='${t}']`);
               els.forEach(function (el) {
