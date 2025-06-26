@@ -50,38 +50,40 @@ if (isset($_FILES['file']) && pathinfo($_FILES['file']['name'], PATHINFO_EXTENSI
     foreach ($rii as $file) {
         if ($file->isDir()) continue;
 
-    
         $ruta = $file->getPathname();
         $nombreArchivo = $file->getFilename();
 
-        // ✅ Validaciones de seguridad para archivos maliciosos
+        // Seguridad: Verifica que el archivo esté dentro del directorio permitido
         $realBase = realpath($extractPath);
         $realPath = realpath($ruta);
-        if (strpos($realPath, $realBase) !== 0) {
-            echo "Archivo fuera del directorio permitido: $nombreArchivo<br>";
+        if ($realPath === false || strpos($realPath, $realBase) !== 0) {
+            echo "❌ Archivo fuera del directorio permitido: $nombreArchivo<br>";
             continue;
         }
 
+       
         $ext = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
-        $permitidas = ['php', 'js', 'py', 'java', 'c', 'cpp', 'txt'];
+        $permitidas = ['php', 'py', 'js', 'java', 'c', 'cpp', 'txt'];
         if (!in_array($ext, $permitidas)) {
-            echo "Extensión no permitida: $nombreArchivo<br>";
+            echo "❌ Extensión no permitida: $nombreArchivo<br>";
             continue;
         }
 
-        if (preg_match('/\.(php|exe|bat|sh|phtml|jsp)(\.[a-z]+)?$/i', $nombreArchivo)) {
-            echo "Archivo sospechoso o con doble extensión: $nombreArchivo<br>";
+       
+        if (preg_match('/\.(php|exe|bat|sh|phtml|jsp)(\.[a-z0-9]+)?$/i', $nombreArchivo) && !in_array($ext, ['php', 'py'])) {
+            echo "❌ Archivo sospechoso o con doble extensión: $nombreArchivo<br>";
             continue;
         }
 
+        
         if (!is_readable($ruta)) {
-            echo "No legible: $nombreArchivo<br>";
+            echo "⚠️ No legible: $nombreArchivo<br>";
             continue;
         }
 
         $contenido = file_get_contents($ruta);
         if ($contenido === false) {
-            echo "Error lectura: $nombreArchivo<br>";
+            echo "⚠️ Error al leer: $nombreArchivo<br>";
             continue;
         }
         $totalCount++;
