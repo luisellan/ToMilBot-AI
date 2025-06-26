@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
 
@@ -274,14 +273,7 @@
                                 Si no encuentras la respuesta a tu pregunta en nuestras FAQ, siempre puedes contactarnos o enviarnos un correo. ¡Te responderemos a la brevedad!
                             </p>
 
-                            <div class="">
-                                <button type="button" class="btn btn-primary btn-label rounded-pill">
-                                    <i class="ri-mail-line label-icon align-middle rounded-pill fs-16 me-2"></i> Envíanos un correo
-                                </button>
-                                <button type="button" class="btn btn-info btn-label rounded-pill">
-                                    <i class="ri-twitter-line label-icon align-middle rounded-pill fs-16 me-2"></i> Esbribanos a Whatsapp
-                                </button>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -424,123 +416,55 @@
                 </div>
                 <!-- end row -->
                 <div class="row justify-content-center">
-                    <div class="col-lg-3 col-sm-6">
+                    <!-- Miembro 1 -->
+                    <div class="col-lg-3 col-sm-6 mb-4">
                         <div class="card">
                             <div class="card-body text-center p-4">
-                                <div class="avatar-xl mx-auto mb-4 position-relative">
-                                    <img src="assets/images/users/avatar1.jpg" alt="" class="img-fluid rounded-circle">
-                                    <a href="apps-mailbox.html" class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                        <div class="avatar-title bg-transparent">
-                                            <i class="ri-mail-fill align-bottom"></i>
-                                        </div>
-                                    </a>
+                                <div class="avatar-xl mx-auto mb-4">
+                                    <img src="assets/perfiles/milena.jpg" alt="Milena Toala">
+                                    <a href="https://wa.me/593988644426" target="_blank" class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs" title="Enviar WhatsApp">
+    <div class="avatar-title bg-transparent">
+        <i class="ri-whatsapp-fill align-bottom"></i>
+    </div>
+</a>
+
                                 </div>
-                                <!-- end card body -->
-                                <h5 class="mb-1"><a href="pages-profile.html" class="text-body">Milena Toala</a></h5>
+                                <h5 class="mb-1">
+                                    <a href="pages-profile.html" class="text-body">Milena Toala</a>
+                                </h5>
                                 <p class="text-muted mb-0 ff-secondary">Ingeniero en Software</p>
                             </div>
                         </div>
-                        <!-- end card -->
                     </div>
-                    <!-- end col -->
-                    <div class="col-lg-3 col-sm-6">
+
+                    <!-- Miembro 2 -->
+                    <div class="col-lg-3 col-sm-6 mb-4">
                         <div class="card">
                             <div class="card-body text-center p-4">
-                                <div class="avatar-xl mx-auto mb-4 position-relative">
-                                    <img src="assets/images/users/avatar2.jpg" alt="" class="img-fluid rounded-circle">
-                                    <a href="apps-mailbox.html" class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                        <div class="avatar-title bg-transparent">
-                                            <i class="ri-mail-fill align-bottom"></i>
-                                        </div>
-                                    </a>
+                                <div class="avatar-xl mx-auto mb-4">
+                                    <img src="assets/perfiles/luis.jpg" alt="Luis Sellan">
+                                    <a href="https://wa.me/593961267944" target="_blank" class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs" title="Enviar WhatsApp">
+    <div class="avatar-title bg-transparent">
+        <i class="ri-whatsapp-fill align-bottom"></i>
+    </div>
+</a>
                                 </div>
-                                <!-- end card body -->
-                                <h5 class="mb-1"><a href="pages-profile.html" class="text-body">Luis Sellan</a></h5>
+                                <h5 class="mb-1">
+                                    <a href="pages-profile.html" class="text-body">Luis Sellan</a>
+                                </h5>
                                 <p class="text-muted mb-0 ff-secondary">Ingeniero en Software</p>
                             </div>
                         </div>
-                        <!-- end card -->
                     </div>
-                    <!-- end col -->
                 </div>
 
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center mt-2">
-                            <a href="pages-team.html" class="btn btn-primary">View All Members <i class="ri-arrow-right-line ms-1 align-bottom"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- end row -->
             </div>
             <!-- end container -->
         </section>
         <!-- end team -->
-
-        <!-- inicio contacto -->
-        <section class="section" id="contacto">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="text-center mb-5">
-                            <h3 class="mb-3 fw-semibold">Ponte en contacto</h3>
-                            <p class="text-muted mb-4 ff-secondary">Nos destacamos al generar ideas innovadoras, pero también entendemos que un concepto inteligente debe ser respaldado con resultados medibles.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- fin fila -->
-
-                <div class="row gy-4">
-
-                    <!-- fin columna -->
-                    <div class="col-lg-12">
-                        <div>
-                            <form>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-4">
-                                            <label for="name" class="form-label fs-13">Nombre</label>
-                                            <input name="name" id="name" type="text" class="form-control bg-light border-light" placeholder="Tu nombre*">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-4">
-                                            <label for="email" class="form-label fs-13">Correo electrónico</label>
-                                            <input name="email" id="email" type="email" class="form-control bg-light border-light" placeholder="Tu correo electrónico*">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-4">
-                                            <label for="subject" class="form-label fs-13">Asunto</label>
-                                            <input type="text" class="form-control bg-light border-light" id="subject" name="subject" placeholder="Tu asunto.." />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="comments" class="form-label fs-13">Mensaje</label>
-                                            <textarea name="comments" id="comments" rows="3" class="form-control bg-light border-light" placeholder="Tu mensaje..."></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 text-end">
-                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Enviar mensaje">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- fin fila -->
-            </div>
-            <!-- fin contenedor -->
-        </section>
-        <!-- fin contacto -->
 
 
 
@@ -556,46 +480,7 @@
                         <img src="assets/icon/icono.png" alt="logo light" height="50">
                     </div>
 
-                    <!-- Redes Sociales -->
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <ul class="list-inline mb-0 footer-social-link">
-                            <li class="list-inline-item">
-                                <a href="#" class="avatar-xs d-block">
-                                    <div class="avatar-title rounded-circle">
-                                        <i class="ri-facebook-fill"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="avatar-xs d-block">
-                                    <div class="avatar-title rounded-circle">
-                                        <i class="ri-github-fill"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="avatar-xs d-block">
-                                    <div class="avatar-title rounded-circle">
-                                        <i class="ri-linkedin-fill"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="avatar-xs d-block">
-                                    <div class="avatar-title rounded-circle">
-                                        <i class="ri-google-fill"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="avatar-xs d-block">
-                                    <div class="avatar-title rounded-circle">
-                                        <i class="ri-dribbble-line"></i>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    
 
                     <!-- Copyright -->
                     <div class="col-lg-4 text-center text-lg-end">

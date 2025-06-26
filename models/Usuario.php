@@ -236,6 +236,7 @@ class Usuario extends Conectar
                 $_SESSION["usu_nom"] = $usu_nom; // Puedes agregar campos después
                 $_SESSION["usu_ape"] = $usu_ape;
                 $_SESSION["rol_id"] = $rol_id;
+                $_SESSION["usu_correo"] = $usu_correo;
                 $_SESSION["usu_img"] = 'user-dummy-img.jpg';
                 header("Location: " . conectar::ruta() . "views/home"); // Redirige al home
                 exit();

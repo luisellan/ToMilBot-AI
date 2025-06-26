@@ -1,0 +1,52 @@
+.icon-container {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+}
+
+.animated-icon {
+    animation: flicker 1.5s infinite alternate, float 3s infinite ease-in-out;
+}
+
+/* Efecto de parpadeo */
+@keyframes flicker {
+    0% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Efecto de movimiento */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.avatar-xl {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  
+}
+
+.avatar-xl img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

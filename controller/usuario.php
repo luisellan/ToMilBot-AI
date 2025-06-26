@@ -11,10 +11,10 @@ switch ($_GET["op"]) {
         if (empty($_POST["usu_id"])) {
             $usuario->insertar(
 
-                $_POST["usu_correo"],
+                
                 $_POST["usu_nom"],
                 $_POST["usu_ape"],
-
+                $_POST["usu_correo"],
                 $_POST["usu_pass"],
                 $_POST["rol_id"],
 
@@ -22,10 +22,9 @@ switch ($_GET["op"]) {
         } else {
             $usuario->modificar(
                 $_POST["usu_id"],
-
-                $_POST["usu_correo"],
                 $_POST["usu_nom"],
                 $_POST["usu_ape"],
+                $_POST["usu_correo"],
                 $_POST["usu_img"]
                 
 

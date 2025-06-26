@@ -98,9 +98,7 @@
                         <a class="dropdown-item" href="../Logout/logout.php"><i
                                 class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Salir</span></a>
-                        <a class="dropdown-item" href="pages-faqs.html"><i
-                                class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle">Ayuda</span></a>
+                        
 
                     </div>
                 </div>

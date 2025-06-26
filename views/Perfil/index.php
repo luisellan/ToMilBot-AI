@@ -117,92 +117,121 @@ if (isset($_SESSION["usu_id"])) {
 
                 <?php require_once("../html/footer.php"); ?>
                 <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const btnEditarPerfil = document.getElementById('btnEditarPerfil');
-                        const btnGuardarCambios = document.getElementById('btnGuardarCambios');
-                        const btnCancelar = document.getElementById('btnCancelar');
-                        const inputs = document.querySelectorAll('input.form-control');
-                        const guardarPerfil = document.getElementById('guardarPerfil');
-                        const contenedorImagen = document.getElementById('contenedorImagen');
+                    
+document.addEventListener('DOMContentLoaded', function () {
+    const btnEditarPerfil = document.getElementById('btnEditarPerfil');
+    const btnGuardarCambios = document.getElementById('btnGuardarCambios');
+    const btnCancelar = document.getElementById('btnCancelar');
+    const inputs = document.querySelectorAll('input.form-control');
+    const guardarPerfil = document.getElementById('guardarPerfil');
+    const contenedorImagen = document.getElementById('contenedorImagen');
 
-                        btnEditarPerfil.addEventListener('click', function() {
-                            inputs.forEach(input => input.disabled = false);
-                            guardarPerfil.classList.remove('d-none');
-                            contenedorImagen.classList.remove('d-none');
-                        });
+    btnEditarPerfil.addEventListener('click', function () {
+        inputs.forEach(input => input.disabled = false);
+        guardarPerfil.classList.remove('d-none');
+        contenedorImagen.classList.remove('d-none');
+    });
 
-                        btnCancelar.addEventListener('click', function() {
-                            inputs.forEach(input => input.disabled = true);
-                            guardarPerfil.classList.add('d-none');
-                            contenedorImagen.classList.add('d-none');
-                        });
+    btnCancelar.addEventListener('click', function () {
+        inputs.forEach(input => input.disabled = true);
+        guardarPerfil.classList.add('d-none');
+        contenedorImagen.classList.add('d-none');
+    });
 
-                        btnGuardarCambios.addEventListener('click', function() {
-                            const formData = new FormData();
-                            formData.append('usu_id', document.getElementById('usu_id').value);
-                            formData.append('usu_nom', document.getElementById('input_nombre').value);
-                            formData.append('usu_ape', document.getElementById('input_apellido').value);
-                            formData.append('usu_correo', document.getElementById('input_correo').value);
-
-
-                            const fileInput = document.getElementById('usu_img');
-                            if (fileInput.files.length > 0) {
-                                formData.append('usu_img', fileInput.files[0]);
-                            }
-
-                            fetch('../../controller/usuario.php?op=guardaryeditar', {
-                                    method: 'POST',
-                                    body: formData
-                                })
-                                .then(response => response.text())
-                                .then(data => {
-                                    inputs.forEach(input => input.disabled = true);
-                                    guardarPerfil.classList.add('d-none');
-                                    contenedorImagen.classList.add('d-none');
-
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: '¡Datos actualizados!',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error al guardar cambios',
-                                        text: 'Intente nuevamente',
-                                    });
-                                });
-                        });
+    btnGuardarCambios.addEventListener('click', function () {
+        const formData = new FormData();
+        formData.append('usu_id', document.getElementById('usu_id').value);
+        formData.append('usu_nom', document.getElementById('input_nombre').value);
+        formData.append('usu_ape', document.getElementById('input_apellido').value);
+        formData.append('usu_correo', document.getElementById('input_correo').value);
 
 
-                        function filePreview(input) {
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function(e) {
-                                    $("#pre_imagen").html(
-                                        "<img src=" +
-                                        e.target.result +
-                                        ' class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image"></img>'
-                                    );
-                                };
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
+        const fileInput = document.getElementById('usu_img');
+        if (fileInput.files.length > 0) {
+            formData.append('usu_img', fileInput.files[0]);
+        }
 
-                        $(document).on("change", "#usu_img", function() {
-                            filePreview(this);
-                        });
+        fetch('../../controller/usuario.php?op=guardaryeditar', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
 
-                        $(document).on("click", "#btnremovephoto", function() {
-                            $("#usu_img").val("");
-                            $("#pre_imagen").html(
-                                '<img src="../../assets/images/users/user-dummy-img.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image"></img><input type="hidden" name="hidden_usuario_imagen" value="" />'
-                            );
-                        });
-                    });
+            .then(data => {
+                inputs.forEach(input => input.disabled = true);
+                guardarPerfil.classList.add('d-none');
+                contenedorImagen.classList.add('d-none');
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Datos actualizados!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al guardar cambios',
+                    text: 'Intente nuevamente',
+                });
+            });
+        fetch('../../controller/usuario.php?op=guardaryeditar', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Aquí sí debe estar
+                inputs.forEach(input => input.disabled = true);
+                guardarPerfil.classList.add('d-none');
+                contenedorImagen.classList.add('d-none');
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Datos actualizados!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al guardar cambios',
+                    text: 'Intente nuevamente',
+                });
+            });
+    });
+
+
+    function filePreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#pre_imagen").html(
+                    "<img src=" +
+                    e.target.result +
+                    ' class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image"></img>'
+                );
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).on("change", "#usu_img", function () {
+        filePreview(this);
+    });
+
+    $(document).on("click", "#btnremovephoto", function () {
+        $("#usu_img").val("");
+        $("#pre_imagen").html(
+            '<img src="../../assets/images/users/user-dummy-img.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image"></img><input type="hidden" name="hidden_usuario_imagen" value="" />'
+        );
+    });
+});
+
                 </script>
 
             </div>
