@@ -51,7 +51,7 @@ if (isset($_SESSION["usu_id"])) {
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>FechaCreacion</th>
-                                                <th></th>
+                                             
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -74,7 +74,7 @@ if (isset($_SESSION["usu_id"])) {
     </div>
 
     <?php require_once("mantenimiento.php"); ?>
-    <?php require_once("permisos.php"); ?>
+    
     
     <script type="text/javascript" src="mntrol.js"></script>
 </body>
