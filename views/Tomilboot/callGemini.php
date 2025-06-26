@@ -74,10 +74,10 @@ Code:\n\n",
 
 
 
-// --- función de traducción mock ---
+
 function traducirAlIngles($texto)
 {
-    // reemplaza con tu API real si quieres
+    
     return callGemini($texto, 'translate');
 }
 
