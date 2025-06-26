@@ -78,35 +78,38 @@ if (isset($_POST["enviar"]) and $_POST["enviar"] == "si") {
                                     <form class="sign-box" action="" method="post" id="login_form">
                                         <input type="hidden" name="rol_id" id="rol_id" value="1">
 
-
                                         <?php
+
                                         if (isset($_GET["m"])) {
                                             $mensaje = "";
                                             switch ($_GET["m"]) {
-                                                case 1:
+                                                case "1":
                                                     $mensaje = "El usuario o contraseña son incorrectos";
                                                     break;
-                                                case 2:
+                                                case "2":
                                                     $mensaje = "Los campos están vacíos";
                                                     break;
+                                                default:
+                                                    $mensaje = "Error desconocido";
                                             }
 
                                             if ($mensaje !== "") {
                                         ?>
-                                                <!-- Alerta con cierre manual -->
+
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert" id="miAlerta">
-                                                    <strong><i class="bi bi-exclamation-triangle-fill me-2"></i></strong> <?= $mensaje ?>
+                                                    <strong><i class="bi bi-exclamation-triangle-fill me-2"></i></strong>
+                                                    <?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?>
                                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                 </div>
 
-                                                <!-- Script nativo para ocultar después de 5 segundos -->
+
                                                 <script>
                                                     setTimeout(() => {
                                                         const alerta = document.getElementById('miAlerta');
                                                         if (alerta) {
                                                             alerta.classList.remove('show');
                                                             alerta.classList.add('fade');
-                                                            setTimeout(() => alerta.remove(), 500); // se elimina del DOM
+                                                            setTimeout(() => alerta.remove(), 500);
                                                         }
                                                     }, 5000);
                                                 </script>
@@ -114,35 +117,39 @@ if (isset($_POST["enviar"]) and $_POST["enviar"] == "si") {
                                             }
                                         }
                                         ?>
+
                                         <div class="mb-3">
                                             <label for="usu_correo" class="form-label">Correo</label>
-                                            <input type="text" class="form-control" id="usu_correo"
-                                                name="usu_correo" placeholder="Ingresa tu Correo">
+                                            <input type="text" class="form-control" id="usu_correo" name="usu_correo"
+                                                placeholder="Ingresa tu Correo"
+                                                value="<?= isset($_POST['usu_correo']) ? htmlspecialchars($_POST['usu_correo'], ENT_QUOTES, 'UTF-8') : '' ?>">
                                         </div>
+
                                         <div class="mb-3">
                                             <div class="float-end">
                                                 <a href="reset-password.php" class="text-muted">¿Olvidaste tu contraseña?</a>
                                             </div>
                                             <label class="form-label" for="usu_pass">Contraseña</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" id="usu_pass"
-                                                    name="usu_pass" class="form-control pe-5" placeholder="Ingresa tu contraseña" id="password-input">
-
+                                                <input type="password" id="usu_pass" name="usu_pass" class="form-control pe-5"
+                                                    placeholder="Ingresa tu contraseña">
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <div class="d-flex justify-content-between">
                                                 <a href="reset-password.php">Restaurar Contraseña</a>
                                                 <a href="#" id="btnSoporte">Acceso Soporte</a>
                                             </div>
                                         </div>
+
                                         <div class="mt-4">
                                             <input type="hidden" name="enviar" value="si" class="form-control">
                                             <button class="btn btn-success w-100" type="submit">Iniciar Sesión</button>
                                         </div>
-
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                         <div class="mt-4 text-center">

@@ -49,8 +49,31 @@ if (isset($_FILES['file']) && pathinfo($_FILES['file']['name'], PATHINFO_EXTENSI
 
     foreach ($rii as $file) {
         if ($file->isDir()) continue;
+
+    
         $ruta = $file->getPathname();
         $nombreArchivo = $file->getFilename();
+
+        // ✅ Validaciones de seguridad para archivos maliciosos
+        $realBase = realpath($extractPath);
+        $realPath = realpath($ruta);
+        if (strpos($realPath, $realBase) !== 0) {
+            echo "Archivo fuera del directorio permitido: $nombreArchivo<br>";
+            continue;
+        }
+
+        $ext = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
+        $permitidas = ['php', 'js', 'py', 'java', 'c', 'cpp', 'txt'];
+        if (!in_array($ext, $permitidas)) {
+            echo "Extensión no permitida: $nombreArchivo<br>";
+            continue;
+        }
+
+        if (preg_match('/\.(php|exe|bat|sh|phtml|jsp)(\.[a-z]+)?$/i', $nombreArchivo)) {
+            echo "Archivo sospechoso o con doble extensión: $nombreArchivo<br>";
+            continue;
+        }
+
         if (!is_readable($ruta)) {
             echo "No legible: $nombreArchivo<br>";
             continue;
@@ -61,7 +84,6 @@ if (isset($_FILES['file']) && pathinfo($_FILES['file']['name'], PATHINFO_EXTENSI
             echo "Error lectura: $nombreArchivo<br>";
             continue;
         }
-
         $totalCount++;
         $respuesta = callGemini($contenido, 'analyze');
 

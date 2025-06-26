@@ -77,73 +77,80 @@ if (isset($_POST["enviar"]) and $_POST["enviar"] == "si") {
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form class="sign-box" action="" method="post" id="register_form">
-                                        <input type="hidden" name="rol_id" id="rol_id" value="1">
+    <input type="hidden" name="rol_id" id="rol_id" value="1">
 
+    <?php
+    if (isset($_GET["m"])) {
+        $mensaje = "";
+        switch ($_GET["m"]) {
+            case 1:
+                $mensaje = "El usuario o contraseña son incorrectos";
+                break;
+            case 2:
+                $mensaje = "Los campos están vacíos";
+                break;
+            default:
+                $mensaje = "Error desconocido";
+        }
 
-                                        <?php
-                                        if (isset($_GET["m"])) {
-                                            $mensaje = "";
-                                            switch ($_GET["m"]) {
-                                                case 1:
-                                                    $mensaje = "El usuario o contraseña son incorrectos";
-                                                    break;
-                                                case 2:
-                                                    $mensaje = "Los campos están vacíos";
-                                                    break;
-                                            }
+        if ($mensaje !== "") {
+    ?>
+            <!-- Alerta segura -->
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="miAlerta">
+                <strong><i class="bi bi-exclamation-triangle-fill me-2"></i></strong>
+                <?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
 
-                                            if ($mensaje !== "") {
-                                        ?>
-                                                <!-- Alerta con cierre manual -->
-                                                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="miAlerta">
-                                                    <strong><i class="bi bi-exclamation-triangle-fill me-2"></i></strong> <?= $mensaje ?>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
+            <script>
+                setTimeout(() => {
+                    const alerta = document.getElementById('miAlerta');
+                    if (alerta) {
+                        alerta.classList.remove('show');
+                        alerta.classList.add('fade');
+                        setTimeout(() => alerta.remove(), 500);
+                    }
+                }, 5000);
+            </script>
+    <?php
+        }
+    }
+    ?>
 
-                                                <!-- Script nativo para ocultar después de 5 segundos -->
-                                                <script>
-                                                    setTimeout(() => {
-                                                        const alerta = document.getElementById('miAlerta');
-                                                        if (alerta) {
-                                                            alerta.classList.remove('show');
-                                                            alerta.classList.add('fade');
-                                                            setTimeout(() => alerta.remove(), 500); // se elimina del DOM
-                                                        }
-                                                    }, 5000);
-                                                </script>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                        <div class="mb-3">
-                                            <label for="usu_nom" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" id="usu_nom" name="usu_nom" placeholder="Ingresa tu Nombre">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="usu_ape" class="form-label">Apellido</label>
-                                            <input type="text" class="form-control" id="usu_ape" name="usu_ape" placeholder="Ingresa tu Apellido">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="usu_correo" class="form-label">Correo</label>
-                                            <input type="text" class="form-control" id="usu_correo"
-                                                name="usu_correo" placeholder="Ingresa tu Correo">
-                                        </div>
-                                        <div class="mb-3">
-                                            
-                                            <label class="form-label" for="usu_pass">Contraseña</label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" id="usu_pass"
-                                                    name="usu_pass" class="form-control pe-5" placeholder="Ingresa tu contraseña" id="password-input">
+    <div class="mb-3">
+        <label for="usu_nom" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="usu_nom" name="usu_nom"
+            value="<?= isset($_POST['usu_nom']) ? htmlspecialchars($_POST['usu_nom'], ENT_QUOTES, 'UTF-8') : '' ?>"
+            placeholder="Ingresa tu Nombre">
+    </div>
 
-                                            </div>
-                                        </div>
+    <div class="mb-3">
+        <label for="usu_ape" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="usu_ape" name="usu_ape"
+            value="<?= isset($_POST['usu_ape']) ? htmlspecialchars($_POST['usu_ape'], ENT_QUOTES, 'UTF-8') : '' ?>"
+            placeholder="Ingresa tu Apellido">
+    </div>
 
-                                        <div class="mt-4">
-                                            <input type="hidden" name="enviar" value="si" class="form-control">
-                                            <button class="btn btn-success w-100" type="submit">Registarse</button>
-                                        </div>
+    <div class="mb-3">
+        <label for="usu_correo" class="form-label">Correo</label>
+        <input type="text" class="form-control" id="usu_correo" name="usu_correo"
+            value="<?= isset($_POST['usu_correo']) ? htmlspecialchars($_POST['usu_correo'], ENT_QUOTES, 'UTF-8') : '' ?>"
+            placeholder="Ingresa tu Correo">
+    </div>
 
-                                    </form>
+    <div class="mb-3">
+        <label class="form-label" for="usu_pass">Contraseña</label>
+        <div class="position-relative auth-pass-inputgroup mb-3">
+            <input type="password" id="usu_pass" name="usu_pass"
+                class="form-control pe-5" placeholder="Ingresa tu contraseña">
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <input type="hidden" name="enviar" value="si" class="form-control">
+        <button class="btn btn-success w-100" type="submit">Registrarse</button>
+    </div>
+</form>
                                 </div>
                             </div>
                         </div>
